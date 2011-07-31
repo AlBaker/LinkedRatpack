@@ -80,10 +80,8 @@ class RatpackServlet extends HttpServlet {
             )
 
         }
-        
-		println "OUTPUT CLASS: ${output.class}"
 		
-		if (output.class == com.hp.hpl.jena.rdf.model.impl.ModelCom) { 
+		if (app.config.autoSerialize && output.class == com.hp.hpl.jena.rdf.model.impl.ModelCom) { 
 			res.setHeader('ContentType', 'application/rdf+xml')
 			output.write(res.getOutputStream(), "RDF/XML")
 			res.getOutputStream().flush()

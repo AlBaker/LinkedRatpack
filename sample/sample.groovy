@@ -1,10 +1,15 @@
 
 set 'port', 4999
+set 'autoSerialize', true
 
 // All three methods (RDFBuilder closure, construct, resolve) return
 // Jena models and can be further processed with Groovy SPARQL's Sparql class
 // link(String endpoint) returns the Sparql endpoint or you can instantiate new
 // ones.  Jena+ ARQ will be on the classpath
+
+// Note on 'autoSerialize', this will convert any returned jena models into RDF/XML
+// if you don't want this because you have serialize yourself (such as in the first get
+// below, you should return null, you can turn this behavior off above
 
 get("/") {
 	setHeader("Content-Type", "application/rdf+xml")
@@ -18,7 +23,7 @@ get("/") {
 	        property "foaf:givenname":"Clark"
 	        property "foaf:family_name":"Kent"
 	    }
-	} 
+	};return null
 }
 
 get("/groovy") { 

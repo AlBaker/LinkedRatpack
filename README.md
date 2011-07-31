@@ -1,7 +1,22 @@
-Ratpack
+Linked Ratpack
 =======
 
-A micro web framework for Groovy
+A Linked Data micro web framework for Groovy, based on Ratpack
+
+Linked Ratpack takes the excellent Ratpack and adds Groovy SPARQL, 
+and capabilities to easily generate RDF, query SPARQL endpoints, and de-reference URIs
+
+Intro and example:
+http://linkedjava.blogspot.com/2011/07/linked-data-microframework-linked.html
+
+See the sample.groovy file for how to use the Linked Data aspects.
+
+Otherwise, it is the same as Ratpack
+
+Below is the original Ratpack documentation.
+
+Enjoy!
+
 --------------------------------
 
 Ratpack is inspired by the excellent [Sinatra][] framework for Ruby, and aims to make Groovy web development more classy.

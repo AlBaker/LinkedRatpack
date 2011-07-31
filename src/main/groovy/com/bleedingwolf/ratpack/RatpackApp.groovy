@@ -11,7 +11,8 @@ class RatpackApp {
     ]
     
     def config = [
-        port: 5000
+        port: 5000,
+		autoSerialize: false
     ]
     
     def set = { setting, value ->
