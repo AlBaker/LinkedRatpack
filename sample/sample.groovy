@@ -1,6 +1,11 @@
 
 set 'port', 4999
 
+// All three methods (RDFBuilder closure, construct, resolve) return
+// Jena models and can be further processed with Groovy SPARQL's Sparql class
+// link(String endpoint) returns the Sparql endpoint or you can instantiate new
+// ones.  Jena+ ARQ will be on the classpath
+
 get("/") {
 	setHeader("Content-Type", "application/rdf+xml")
 	rdf.xml { 
@@ -13,7 +18,7 @@ get("/") {
 	        property "foaf:givenname":"Clark"
 	        property "foaf:family_name":"Kent"
 	    }
-	}
+	} 
 }
 
 get("/groovy") { 
@@ -23,9 +28,9 @@ get("/groovy") {
         } wHERE { 
             <http://dbpedia.org/resource/Groovy_%28programming_language%29> <http://dbpedia.org/ontology/abstract> ?b
         } 
-	""")
+	""") 
 }
 
 get("/tim") { 
-	def timModel = resolve('http://www.w3.org/People/Berners-Lee/card')
+	resolve('http://www.w3.org/People/Berners-Lee/card')
 }
