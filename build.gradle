@@ -4,12 +4,23 @@ group = 'com.bleedingwolf.ratpack'
 version = '0.2-SNAPSHOT'
 
 repositories {
+	mavenLocal()
     mavenCentral()
+	mavenRepo urls:"http://snapshots.repository.codehaus.org"
 }
+
 
 dependencies {
     groovy group: 'org.codehaus.groovy', name: 'groovy', version: '1.7.9'
-    
+	
+	compile ('org.codehaus.groovy.modules.http-builder:http-builder:0.5.0') { 
+		exclude(group:'xerces', module: 'xercesImpl')
+		exclude(group:'net.sourceforge.nekohtml', module: 'nekohtml')
+		//exclude(group:'xml-resolver', module:'xml-resolver')
+		exclude(group:'org.codehaus.groovy', module:'groovy')
+	}
+	
+	compile 'org.codehaus.groovy.sparql:groovy-sparql:0.2.1'
     compile group: 'javax.servlet', name: 'servlet-api', version: '2.5'
     compile group: 'org.json', name: 'json', version: '20090211'
     compile(group: 'org.mortbay.jetty', name: 'jetty', version: '6.1.26') { exclude module: 'servlet-api' }

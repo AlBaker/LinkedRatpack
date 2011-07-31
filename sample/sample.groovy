@@ -1,16 +1,31 @@
-import java.text.SimpleDateFormat
 
 set 'port', 4999
 
 get("/") {
-	def ua = headers['user-agent']
-    "Your user-agent: ${ua}"
+	setHeader("Content-Type", "application/rdf+xml")
+	rdf.xml { 
+		defaultNamespace "http://localhost:4999/test"
+		namespace foaf:"http://xmlns.com/foaf/0.1"
+		
+		subject("#clarkkent") {
+	        property "foaf:gender":"male"
+	        property "foaf:title":"Mr"
+	        property "foaf:givenname":"Clark"
+	        property "foaf:family_name":"Kent"
+	    }
+	}
 }
-    
-get("/foo/:name") {
-	"Hello, ${urlparams.name}"
+
+get("/groovy") { 
+	link("http://dbpedia.org/sparql").construct("""
+        CONSTRUCT { 
+            <http://dbpedia.org/resource/Groovy_%28programming_language%29> <http://dbpedia.org/ontology/abstract> ?b
+        } wHERE { 
+            <http://dbpedia.org/resource/Groovy_%28programming_language%29> <http://dbpedia.org/ontology/abstract> ?b
+        } 
+	""")
 }
-    
-get("/person/:id") {
-	"Person #${urlparams.id}"
+
+get("/tim") { 
+	def timModel = resolve('http://www.w3.org/People/Berners-Lee/card')
 }

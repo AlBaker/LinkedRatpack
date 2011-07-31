@@ -58,5 +58,6 @@ class RatpackApp {
     def delete = { path, handler ->
         register('DELETE', path, handler)
     }
+	
 
 }

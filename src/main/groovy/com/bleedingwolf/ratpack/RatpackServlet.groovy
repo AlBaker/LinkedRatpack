@@ -81,15 +81,24 @@ class RatpackServlet extends HttpServlet {
 
         }
         
-        output = convertOutputToByteArray(output)
-            
-        def contentLength = output.length
-        res.setHeader('Content-Length', contentLength.toString())
+		println "OUTPUT CLASS: ${output.class}"
+		
+		if (output.class == com.hp.hpl.jena.rdf.model.impl.ModelCom) { 
+			res.setHeader('ContentType', 'application/rdf+xml')
+			output.write(res.getOutputStream(), "RDF/XML")
+			res.getOutputStream().flush()
+			res.getOutputStream().close()	
+		} else { 
+			output = convertOutputToByteArray(output)
+			def contentLength = output.length
+			res.setHeader('Content-Length', contentLength.toString())
+			
+			def stream = res.getOutputStream()
+			stream.write(output)
+			stream.flush()
+			stream.close()
+		}
         
-        def stream = res.getOutputStream()
-        stream.write(output)
-        stream.flush()
-        stream.close()
         
         // FIXME: use log4j or similar
         println "[   ${res.status}] ${verb} ${path}"
