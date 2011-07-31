@@ -10,6 +10,7 @@ class RatpackApp {
         'POST': new RoutingTable(),
     ]
     
+	// autoSerialize - see RatpackServlet
     def config = [
         port: 5000,
 		autoSerialize: false
