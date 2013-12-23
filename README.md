@@ -1,3 +1,8 @@
+NOTE: This repo and the original rackpack is depracated, given the new [Ratpack Framework(http://www.ratpack.io/).
+
+I'll keep this repo up for historical purposes.  This versoin was certainly uesful in several prototyping use cases.  A new version of a ratpack plugin for Groovy SPARQL will be in the works to take its place.
+
+
 Linked Ratpack
 =======
 
